@@ -1,9 +1,9 @@
 :root { color: #17263b; background: #edf5f3; font-family: "Open Sans", sans-serif; }
 * { box-sizing: border-box; }
 button, input { font: inherit; }
-.public-landing { min-height: 100vh; padding: 70px 32px 92px; background: #edf5f3; color: #17263b; }
-.public-shell { width: min(1440px, 100%); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.52fr) minmax(360px, .72fr); gap: 52px 72px; align-items: start; }
-.public-hero { padding-top: 24px; border-top: 4px solid #ef654c; }
+.public-landing { min-height: 100vh; padding: 28px 20px 64px; background: #edf5f3; color: #17263b; }
+.public-shell { width: min(1640px, 100%); margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1.52fr) minmax(360px, .72fr); gap: 40px 56px; align-items: start; }
+.public-hero { padding-top: 18px; border-top: 4px solid #ef654c; }
 .public-brand { display: flex; align-items: center; gap: 10px; color: #2d787d; font-size: 15px; }
 .public-brand > span, .public-access-title > span { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 8px; color: white; background: #2d787d; }
 .public-brand i { width: 1px; height: 20px; background: #b8c9c8; }
