@@ -7062,46 +7062,6 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
             </div>
           </div>
         </div>
-        <section className="landing-workspace-preview" aria-label="The Vendor Book product preview">
-          <div className="landing-workspace-topbar">
-            <span className="landing-workspace-brand"><Camera size={15} /> The Vendor Book</span>
-            <div><span className="landing-live-dot" /> Live workspace</div>
-          </div>
-          <div className="landing-workspace-heading">
-            <div>
-              <p>Monday, June 23</p>
-              <h2>Your studio, in motion.</h2>
-            </div>
-            <span>Year to date <BarChart3 size={15} /></span>
-          </div>
-          <div className="landing-workspace-grid">
-            <section className="landing-today-card">
-              <div className="landing-card-title"><CalendarDays size={17} /><span>Today&apos;s work</span><b>3 jobs</b></div>
-              {[
-                ["10:00 AM", "Morgan Ellis", "Brand session", "Covered"],
-                ["2:30 PM", "Avery Stone", "Wedding consult", "Contract sent"],
-                ["5:00 PM", "Jordan Miles", "Gallery delivery", "Ready"],
-              ].map(([time, client, work, status]) => (
-                <div className="landing-work-row" key={client}>
-                  <time>{time}</time>
-                  <div><strong>{client}</strong><span>{work}</span></div>
-                  <em>{status}</em>
-                </div>
-              ))}
-            </section>
-            <section className="landing-money-card">
-              <div className="landing-card-title"><Wallet size={17} /><span>Money in view</span><b>June</b></div>
-              <div className="landing-money-value"><span>Collected</span><strong>$12,860</strong><small>of $18,420 booked</small></div>
-              <div className="landing-progress"><i /></div>
-              <div className="landing-money-stats"><span><b>$5,560</b> open</span><span><b>$1,105</b> sales tax</span></div>
-            </section>
-          </div>
-          <div className="landing-workspace-strip">
-            <span><FileText size={15} /> Invoice ready</span>
-            <span><Users size={15} /> Team coverage checked</span>
-            <span><ImageIcon size={15} /> Gallery preview set</span>
-          </div>
-        </section>
         <section className="landing-capability-carousel" aria-label="Explore what The Vendor Book can do">
           <div className="landing-carousel-head">
             <div>
