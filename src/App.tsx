@@ -7005,14 +7005,14 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
   ];
   const productBenefits = [
     {
-      icon: CalendarDays,
-      title: "Book the work",
-      eyebrow: "Bookings",
-      body: "Turn an inquiry into a scheduled job with services, contracts, client details, and a clean booking flow.",
-      signal: "3 booking steps complete",
-      metric: "24",
-      metricLabel: "jobs moving this month",
-      preview: ["Jordan Miles", "Wedding Photo + Video", "Contract ready"],
+      icon: BarChart3,
+      title: "Run the dashboard",
+      eyebrow: "Live dashboard",
+      body: "See bookings, collected income, open balances, tax, expenses, and the work that needs attention before your day gets away from you.",
+      signal: "3 jobs need attention today",
+      metric: "$47.3k",
+      metricLabel: "collected year to date",
+      kind: "dashboard",
     },
     {
       icon: Users,
@@ -7022,27 +7022,27 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
       signal: "All key roles assigned",
       metric: "96%",
       metricLabel: "of assignments fully covered",
-      preview: ["Photo lead", "Video editor", "Time & location confirmed"],
+      kind: "coverage",
     },
     {
-      icon: Wallet,
-      title: "Know the money",
-      eyebrow: "Invoice health",
-      body: "See invoice health, expenses, taxes, payments, open balances, and profit in the same record.",
-      signal: "$2,040 balance due",
-      metric: "$18.4k",
-      metricLabel: "booked revenue in view",
-      preview: ["$2,640 grand total", "$600 collected", "$240 expenses"],
+      icon: ReceiptText,
+      title: "Run the ledger",
+      eyebrow: "General ledger",
+      body: "Every booking, payment, fee, tax, expense, balance, and profit line lives in one searchable, filterable financial record.",
+      signal: "$32,703.25 still open",
+      metric: "$83.8k",
+      metricLabel: "grand total across 59 bookings",
+      kind: "ledger",
     },
     {
-      icon: ImageIcon,
-      title: "Show the finished work",
-      eyebrow: "Client delivery",
-      body: "Build client galleries and a booking website without sending people to a disconnected system.",
-      signal: "Gallery preview is live",
-      metric: "1 click",
-      metricLabel: "from gallery to shareable site",
-      preview: ["Client gallery", "Preview image selected", "Website ready to share"],
+      icon: FileSpreadsheet,
+      title: "Read the reports",
+      eyebrow: "Income + expense",
+      body: "Switch from daily operations to the bigger picture with live income, expected income, expenses, net, tax, and forecasting views.",
+      signal: "Expected net is trending up",
+      metric: "$57.5k",
+      metricLabel: "expected net for the year",
+      kind: "reports",
     },
   ];
   const activeBenefit = productBenefits[activeCapability];
@@ -7115,23 +7115,43 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
                 <div className="landing-carousel-signal"><CheckCircle2 size={16} /> {activeBenefit.signal}</div>
                 <div className="landing-carousel-metric"><strong>{activeBenefit.metric}</strong><span>{activeBenefit.metricLabel}</span></div>
               </div>
-              <div className="landing-carousel-preview" aria-label={`${activeBenefit.title} preview`}>
-                <div className="landing-carousel-preview-head"><span><Camera size={15} /> The Vendor Book</span><em><i /> Live</em></div>
-                <div className="landing-carousel-preview-hero">
-                  <span>{activeBenefit.eyebrow}</span>
-                  <strong>{activeBenefit.preview[0]}</strong>
-                  <p>{activeBenefit.preview[1]}</p>
-                </div>
-                <div className="landing-carousel-preview-steps">
-                  {activeBenefit.preview.map((item, index) => (
-                    <div className="landing-carousel-preview-row" key={item}>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      <b>{item}</b>
-                      <CheckCircle2 size={15} />
+              <div className={`landing-carousel-preview landing-carousel-preview-${activeBenefit.kind}`} aria-label={`${activeBenefit.title} preview`}>
+                <div className="landing-carousel-preview-head"><span><Camera size={15} /> The Vendor Book</span><em><i /> Live data</em></div>
+                {activeBenefit.kind === "dashboard" && (
+                  <>
+                    <div className="landing-dashboard-preview-title"><div><span>Monday, June 23</span><strong>Your studio, in motion.</strong></div><b>Year to date</b></div>
+                    <div className="landing-dashboard-kpis">
+                      {[['Bookings', '$18.4k'], ['Collected', '$12.9k'], ['Open', '$5.6k'], ['Tax', '$1.1k']].map(([label, value]) => <div key={label}><span>{label}</span><strong>{value}</strong></div>)}
                     </div>
-                  ))}
-                </div>
-                <div className="landing-carousel-preview-footer"><span>Next handoff is clear</span><CheckCircle2 size={15} /></div>
+                    <div className="landing-dashboard-lower">
+                      <div className="landing-mini-chart"><span>Booked vs collected</span><div>{[42, 68, 54, 83, 76, 94, 62].map((height, index) => <i key={index} style={{ height: `${height}%` }} />)}</div></div>
+                      <div className="landing-mini-alerts"><span>Needs attention</span><b>2 contracts</b><b>3 balances</b><b>5 upcoming</b></div>
+                    </div>
+                  </>
+                )}
+                {activeBenefit.kind === "coverage" && (
+                  <>
+                    <div className="landing-coverage-preview-title"><div><span>Wedding Photo + Video</span><strong>Team coverage</strong></div><b>Covered</b></div>
+                    <div className="landing-coverage-summary"><span>4 of 4 roles covered</span><div><i /><i /><i /><i /></div></div>
+                    <div className="landing-coverage-rows">
+                      {[["Photography", "Sean Scarmack", "Covered"], ["Video editor", "Emily Carson", "Covered"], ["Second shooter", "Ian Chiodo", "Covered"], ["Time + location", "Client confirmed", "Ready"]].map(([role, person, status]) => <div key={role}><span><Users size={15} /><b>{role}</b></span><strong>{person}</strong><em>{status}</em></div>)}
+                    </div>
+                  </>
+                )}
+                {activeBenefit.kind === "ledger" && (
+                  <>
+                    <div className="landing-ledger-preview-title"><div><span>Reports</span><strong>General Ledger</strong></div><b>2026</b></div>
+                    <div className="landing-ledger-metrics"><div><span>Bookings</span><strong>59</strong></div><div><span>Paid</span><strong>$51.3k</strong></div><div><span>Balance</span><strong>$32.7k</strong></div></div>
+                    <div className="landing-ledger-table"><div><span>Status</span><span>Client</span><span>Total</span><span>Paid</span></div>{[["Deposit", "Kristen Faber", "$4,158", "$530"], ["Open", "Courtney Fuchs", "$1,650", "-"], ["Paid", "Matt Stephens", "$4,410", "$4,410"]].map(([status, client, total, paid]) => <div key={client}><em>{status}</em><b>{client}</b><strong>{total}</strong><span>{paid}</span></div>)}</div>
+                  </>
+                )}
+                {activeBenefit.kind === "reports" && (
+                  <>
+                    <div className="landing-report-preview-title"><div><span>Income + Expense</span><strong>2026 performance</strong></div><b>Year to date</b></div>
+                    <div className="landing-report-metrics"><div><span>Collected</span><strong>$47,340</strong></div><div><span>Expected</span><strong>$78,009</strong></div><div><span>Net</span><strong>$57,457</strong></div></div>
+                    <div className="landing-report-chart"><div className="landing-report-legend"><span><i /> Income</span><span><i /> Expected</span><span><i /> Expenses</span></div><div className="landing-report-bars">{[36, 53, 47, 88, 82, 56, 72].map((height, index) => <div key={index}><i style={{ height: `${height}%` }} /><b style={{ height: `${Math.max(13, height - 19)}%` }} /></div>)}</div><div className="landing-report-months"><span>Jan</span><span>Mar</span><span>May</span><span>Jul</span><span>Sep</span><span>Nov</span><span>Dec</span></div></div>
+                  </>
+                )}
               </div>
             </article>
           </div>
@@ -7303,21 +7323,6 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
           </button>
         )}
       </section>
-        <section className="landing-side-snapshot" aria-label="Sample workspace overview">
-          <div className="landing-side-snapshot-head">
-            <div>
-              <span>Inside the workspace</span>
-              <strong>Everything stays visible.</strong>
-            </div>
-            <BarChart3 size={21} />
-          </div>
-          <div className="landing-side-stat-grid">
-            <div><strong>3</strong><span>jobs today</span></div>
-            <div><strong>1</strong><span>contract waiting</span></div>
-            <div><strong>$5.5k</strong><span>open balance</span></div>
-          </div>
-          <div className="landing-side-check"><Users size={17} /><span>Team coverage checked before the job starts.</span><CheckCircle2 size={17} /></div>
-        </section>
       </aside>
     </main>
   );
