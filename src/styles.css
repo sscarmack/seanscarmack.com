@@ -1799,6 +1799,378 @@ button {
   color: #55a96d;
 }
 
+/* High-impact public landing product stage. */
+.auth-landing-shell {
+  background: #e7f0ef;
+}
+
+.landing-main-column {
+  gap: 26px;
+}
+
+.landing-hero-copy {
+  gap: 20px;
+  padding-bottom: 24px;
+  border-top-width: 5px;
+}
+
+.auth-landing-shell .landing-hero-copy h1 {
+  max-width: 900px;
+  font-size: clamp(3.4rem, 5.35vw, 6.2rem);
+  line-height: 0.91;
+}
+
+.auth-landing-shell .landing-hero-copy .welcome-lede {
+  max-width: 630px;
+  font-size: 1.08rem;
+}
+
+.landing-hero-copy .welcome-primary-cta {
+  min-height: 54px;
+  padding-inline: 24px;
+  font-size: 0.98rem;
+}
+
+.landing-capability-carousel {
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 14px;
+  color: #ecf8f5;
+  background: #112f42;
+  box-shadow: 0 30px 56px rgba(15, 52, 65, 0.24);
+}
+
+.landing-carousel-head {
+  min-height: 122px;
+  align-items: center;
+  padding: 28px 32px;
+  border-bottom: 1px solid rgba(205, 239, 234, 0.18);
+  background: #173f54;
+}
+
+.landing-carousel-head > div:first-child {
+  gap: 8px;
+  max-width: 640px;
+}
+
+.landing-carousel-head p {
+  color: #83d9c5;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+}
+
+.landing-carousel-head h2 {
+  color: #ffffff;
+  font-size: clamp(1.55rem, 2.4vw, 2.15rem);
+  line-height: 1.04;
+}
+
+.landing-carousel-controls {
+  padding: 7px 8px;
+  border: 1px solid rgba(205, 239, 234, 0.2);
+  border-radius: 999px;
+  color: #cce7e1;
+  background: rgba(7, 30, 44, 0.38);
+}
+
+.landing-carousel-controls button {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  color: #e9faf7;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.landing-carousel-controls button:hover,
+.landing-carousel-controls button:focus-visible {
+  color: #143447;
+  background: #77d9be;
+}
+
+.landing-carousel-body {
+  grid-template-columns: minmax(235px, 0.42fr) minmax(0, 1fr);
+  min-height: 392px;
+  border: 0;
+  border-radius: 0;
+}
+
+.landing-carousel-rail {
+  grid-template-rows: auto repeat(4, minmax(64px, 1fr));
+  border-right: 1px solid rgba(205, 239, 234, 0.18);
+  background: #102d40;
+}
+
+.landing-carousel-rail-intro {
+  display: grid;
+  gap: 7px;
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid rgba(205, 239, 234, 0.18);
+}
+
+.landing-carousel-rail-intro span {
+  color: #79d7c0;
+  font-size: 0.67rem;
+  font-weight: 900;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.landing-carousel-rail-intro strong {
+  color: #ffffff;
+  font-size: 0.95rem;
+  line-height: 1.24;
+}
+
+.landing-carousel-rail button {
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  gap: 11px;
+  padding: 12px 18px;
+  border-bottom-color: rgba(205, 239, 234, 0.12);
+  color: #c5dedb;
+}
+
+.landing-carousel-rail button > span {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  color: #9ce5d0;
+  background: rgba(132, 216, 193, 0.12);
+}
+
+.landing-carousel-rail button > div {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.landing-carousel-rail button small {
+  color: #78a9ab;
+  font-size: 0.62rem;
+  letter-spacing: 0.09em;
+}
+
+.landing-carousel-rail button strong {
+  color: #e7f4f1;
+  font-size: 0.88rem;
+}
+
+.landing-carousel-rail button > svg {
+  color: #759da2;
+}
+
+.landing-carousel-rail button.active {
+  position: relative;
+  color: #ffffff;
+  background: #e86952;
+}
+
+.landing-carousel-rail button.active::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  content: "";
+  background: #ffd17a;
+}
+
+.landing-carousel-rail button.active > span {
+  color: #16394c;
+  background: #ffffff;
+}
+
+.landing-carousel-rail button.active strong,
+.landing-carousel-rail button.active small,
+.landing-carousel-rail button.active > svg {
+  color: #ffffff;
+}
+
+.landing-carousel-slide {
+  grid-template-columns: minmax(0, 0.85fr) minmax(270px, 1.15fr);
+  gap: 30px;
+  padding: 34px;
+  background: #eaf3f1;
+}
+
+.landing-carousel-copy {
+  align-content: center;
+  gap: 14px;
+}
+
+.landing-carousel-copy-topline {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.landing-carousel-copy-topline > span {
+  display: inline-grid;
+  place-items: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  color: #ffffff;
+  background: #e86952;
+  font-size: 0.69rem;
+  font-weight: 900;
+}
+
+.landing-carousel-copy-topline b {
+  color: #2b7b77;
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.landing-carousel-copy h3 {
+  color: #132f42;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  line-height: 0.96;
+}
+
+.landing-carousel-copy p {
+  color: #4f6971;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.landing-carousel-signal {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #21694e;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.landing-carousel-signal svg {
+  color: #3fb67b;
+}
+
+.landing-carousel-metric {
+  display: grid;
+  gap: 2px;
+  margin-top: 9px;
+  padding-top: 17px;
+  border-top: 1px solid #c5d9d6;
+}
+
+.landing-carousel-metric strong {
+  color: #14364a;
+  font-size: clamp(1.6rem, 2.5vw, 2.35rem);
+  line-height: 1;
+}
+
+.landing-carousel-metric span {
+  color: #5c747a;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.landing-carousel-preview {
+  align-self: center;
+  min-width: 0;
+  gap: 0;
+  overflow: hidden;
+  border: 7px solid #13394e;
+  border-radius: 13px;
+  background: #ffffff;
+  box-shadow: 0 20px 34px rgba(20, 57, 69, 0.22);
+}
+
+.landing-carousel-preview-head {
+  min-height: 44px;
+  padding: 0 14px;
+  background: #13394e;
+  font-size: 0.71rem;
+}
+
+.landing-carousel-preview-head em {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #aeead3;
+  font-style: normal;
+}
+
+.landing-carousel-preview-head i {
+  width: 8px;
+  height: 8px;
+  background: #7ce3a6;
+}
+
+.landing-carousel-preview-hero {
+  display: grid;
+  gap: 6px;
+  padding: 20px 17px;
+  color: #ffffff;
+  background: #1a5665;
+}
+
+.landing-carousel-preview-hero > span {
+  color: #afe9d9;
+  font-size: 0.67rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.landing-carousel-preview-hero strong {
+  font-size: 1.25rem;
+  line-height: 1.08;
+}
+
+.landing-carousel-preview-hero p {
+  margin: 0;
+  color: #d2ebe5;
+  font-size: 0.78rem;
+}
+
+.landing-carousel-preview-steps {
+  padding: 8px 10px;
+  background: #f7fbfa;
+}
+
+.landing-carousel-preview-row {
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  min-height: 43px;
+  margin: 0;
+  padding: 0 6px;
+  border-top-color: #dce9e6;
+}
+
+.landing-carousel-preview-row:first-child {
+  border-top: 0;
+}
+
+.landing-carousel-preview-row span {
+  color: #e36751;
+}
+
+.landing-carousel-preview-row b {
+  color: #34555e;
+  font-size: 0.75rem;
+}
+
+.landing-carousel-preview-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 43px;
+  padding: 0 16px;
+  color: #2f7657;
+  border-top: 1px solid #dce9e6;
+  background: #ffffff;
+  font-size: 0.71rem;
+  font-weight: 900;
+}
+
+.landing-carousel-preview-footer svg {
+  color: #43ad73;
+}
+
 .payment-box {
   display: flex;
   gap: 12px;
@@ -53867,5 +54239,101 @@ select:focus {
 
   .landing-side-stat-grid strong {
     font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 1080px) {
+  .landing-carousel-slide {
+    grid-template-columns: minmax(0, 0.9fr) minmax(250px, 1.1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .landing-capability-carousel {
+    padding: 0;
+    border-radius: 11px;
+  }
+
+  .landing-carousel-head {
+    min-height: 0;
+    align-items: flex-start;
+    padding: 23px 20px;
+  }
+
+  .landing-carousel-head h2 {
+    font-size: 1.6rem;
+  }
+
+  .landing-carousel-controls {
+    align-self: stretch;
+    justify-content: center;
+  }
+
+  .landing-carousel-body {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .landing-carousel-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto repeat(2, 78px);
+    border-right: 0;
+    border-bottom: 1px solid rgba(205, 239, 234, 0.18);
+  }
+
+  .landing-carousel-rail-intro {
+    grid-column: 1 / -1;
+    padding: 18px;
+  }
+
+  .landing-carousel-rail-intro strong {
+    font-size: 0.87rem;
+  }
+
+  .landing-carousel-rail button {
+    grid-template-columns: 34px minmax(0, 1fr);
+    padding: 10px 12px;
+    border-right: 1px solid rgba(205, 239, 234, 0.12);
+    border-bottom: 1px solid rgba(205, 239, 234, 0.12);
+    text-align: left;
+  }
+
+  .landing-carousel-rail button:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  .landing-carousel-rail button:nth-child(even) {
+    border-right: 0;
+  }
+
+  .landing-carousel-rail button > span {
+    width: 32px;
+    height: 32px;
+  }
+
+  .landing-carousel-rail button > svg {
+    display: none;
+  }
+
+  .landing-carousel-rail button small {
+    display: block;
+  }
+
+  .landing-carousel-rail button strong {
+    font-size: 0.75rem;
+  }
+
+  .landing-carousel-slide {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px 20px;
+  }
+
+  .landing-carousel-copy h3 {
+    font-size: 2.25rem;
+  }
+
+  .landing-carousel-preview {
+    width: 100%;
   }
 }

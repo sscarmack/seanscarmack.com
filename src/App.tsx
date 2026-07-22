@@ -7010,6 +7010,8 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
       eyebrow: "Bookings",
       body: "Turn an inquiry into a scheduled job with services, contracts, client details, and a clean booking flow.",
       signal: "3 booking steps complete",
+      metric: "24",
+      metricLabel: "jobs moving this month",
       preview: ["Jordan Miles", "Wedding Photo + Video", "Contract ready"],
     },
     {
@@ -7018,6 +7020,8 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
       eyebrow: "Team coverage",
       body: "Keep team roles, pay, time, location, and missing coverage visible before the work happens.",
       signal: "All key roles assigned",
+      metric: "96%",
+      metricLabel: "of assignments fully covered",
       preview: ["Photo lead", "Video editor", "Time & location confirmed"],
     },
     {
@@ -7026,6 +7030,8 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
       eyebrow: "Invoice health",
       body: "See invoice health, expenses, taxes, payments, open balances, and profit in the same record.",
       signal: "$2,040 balance due",
+      metric: "$18.4k",
+      metricLabel: "booked revenue in view",
       preview: ["$2,640 grand total", "$600 collected", "$240 expenses"],
     },
     {
@@ -7034,6 +7040,8 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
       eyebrow: "Client delivery",
       body: "Build client galleries and a booking website without sending people to a disconnected system.",
       signal: "Gallery preview is live",
+      metric: "1 click",
+      metricLabel: "from gallery to shareable site",
       preview: ["Client gallery", "Preview image selected", "Website ready to share"],
     },
   ];
@@ -7065,8 +7073,8 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
         <section className="landing-capability-carousel" aria-label="Explore what The Vendor Book can do">
           <div className="landing-carousel-head">
             <div>
-              <p>One system, four moments that matter</p>
-              <h2>Choose the part of the work you want to make easier.</h2>
+              <p>One operating system. Four momentum makers.</p>
+              <h2>Make every handoff feel automatic.</h2>
             </div>
             <div className="landing-carousel-controls">
               <button type="button" aria-label="Show previous capability" onClick={() => setActiveCapability((index) => (index + productBenefits.length - 1) % productBenefits.length)}><ChevronLeft size={18} /></button>
@@ -7076,6 +7084,10 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
           </div>
           <div className="landing-carousel-body">
             <div className="landing-carousel-rail" role="tablist" aria-label="Capabilities">
+              <div className="landing-carousel-rail-intro">
+                <span>The full job</span>
+                <strong>Nothing gets lost between the yes and the payoff.</strong>
+              </div>
               {productBenefits.map((benefit, index) => {
                 const Icon = benefit.icon;
                 const isActive = index === activeCapability;
@@ -7088,30 +7100,38 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
                     type="button"
                     onClick={() => setActiveCapability(index)}
                   >
-                    <span><Icon size={17} /></span>
-                    <strong>{benefit.title}</strong>
-                    <small>{String(index + 1).padStart(2, "0")}</small>
+                    <span><Icon size={18} /></span>
+                    <div><small>{String(index + 1).padStart(2, "0")}</small><strong>{benefit.title}</strong></div>
+                    <ChevronRight size={16} />
                   </button>
                 );
               })}
             </div>
             <article className="landing-carousel-slide" role="tabpanel">
               <div className="landing-carousel-copy">
-                <span>{activeBenefit.eyebrow}</span>
+                <div className="landing-carousel-copy-topline"><span>{String(activeCapability + 1).padStart(2, "0")}</span><b>{activeBenefit.eyebrow}</b></div>
                 <h3>{activeBenefit.title}</h3>
                 <p>{activeBenefit.body}</p>
-                <div><CheckCircle2 size={16} /> {activeBenefit.signal}</div>
+                <div className="landing-carousel-signal"><CheckCircle2 size={16} /> {activeBenefit.signal}</div>
+                <div className="landing-carousel-metric"><strong>{activeBenefit.metric}</strong><span>{activeBenefit.metricLabel}</span></div>
               </div>
               <div className="landing-carousel-preview" aria-label={`${activeBenefit.title} preview`}>
-                <div className="landing-carousel-preview-head"><span><Camera size={15} /> The Vendor Book</span><i /></div>
-                <strong>{activeBenefit.eyebrow}</strong>
-                {activeBenefit.preview.map((item, index) => (
-                  <div className="landing-carousel-preview-row" key={item}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <b>{item}</b>
-                    <CheckCircle2 size={15} />
-                  </div>
-                ))}
+                <div className="landing-carousel-preview-head"><span><Camera size={15} /> The Vendor Book</span><em><i /> Live</em></div>
+                <div className="landing-carousel-preview-hero">
+                  <span>{activeBenefit.eyebrow}</span>
+                  <strong>{activeBenefit.preview[0]}</strong>
+                  <p>{activeBenefit.preview[1]}</p>
+                </div>
+                <div className="landing-carousel-preview-steps">
+                  {activeBenefit.preview.map((item, index) => (
+                    <div className="landing-carousel-preview-row" key={item}>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <b>{item}</b>
+                      <CheckCircle2 size={15} />
+                    </div>
+                  ))}
+                </div>
+                <div className="landing-carousel-preview-footer"><span>Next handoff is clear</span><CheckCircle2 size={15} /></div>
               </div>
             </article>
           </div>
