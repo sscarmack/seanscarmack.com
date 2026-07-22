@@ -17,14 +17,19 @@ import "@fontsource/oswald/latin-400.css";
 import "@fontsource/oswald/latin-500.css";
 import "@fontsource/oswald/latin-600.css";
 import "@fontsource/oswald/latin-700.css";
-import App from "./App";
-import "./styles.css";
+const publicLandingBuild = import.meta.env.VITE_PUBLIC_LANDING === "true";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
+const appModule = publicLandingBuild
+  ? import("./PublicLanding")
+  : Promise.all([import("./App"), import("./styles.css")]).then(([module]) => module);
+
+appModule.then(({ default: App }) => {
+  ReactDOM.createRoot(document.getElementById("root")!).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+  );
+});
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
