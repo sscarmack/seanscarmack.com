@@ -1,0 +1,33 @@
+# Dependencies and package manager caches
+node_modules/
+.pnpm-store/
+
+# Build and local verification output
+dist/
+dist-*/
+.codex-build-*/
+.codex-video-frames/
+tmp-video-frames/
+
+# Local tooling, logs, and generated screenshots
+.codex/
+.agents/
+*.log
+*.out.log
+*.err.log
+*.png
+design-backups/
+email-log.json
+mail-server.mjs
+Start Email Server.bat
+Start Income Tracker.bat
+*conflicted copy*.json
+
+# Local secrets and environment-specific configuration
+.env
+.env.*
+!.env.example
+
+# Operating system files
+.DS_Store
+Thumbs.db

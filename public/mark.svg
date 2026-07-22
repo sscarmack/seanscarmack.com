@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="The Vendor Book mark">
+  <rect width="512" height="512" rx="96" fill="#18212f"/>
+  <path fill="#f3b35c" d="M108 164h92l24-34h64l24 34h92c20 0 36 16 36 36v162c0 20-16 36-36 36H108c-20 0-36-16-36-36V200c0-20 16-36 36-36Z"/>
+  <circle cx="256" cy="282" r="82" fill="#18212f"/>
+  <circle cx="256" cy="282" r="52" fill="#59a59b"/>
+  <path fill="#f4f6f8" d="M155 220h46v28h-46z"/>
+</svg>

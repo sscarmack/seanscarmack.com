@@ -1,0 +1,9 @@
+{
+  "name": "Income Tracker",
+  "short_name": "Income Tracker",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#172334",
+  "icons": []
+}
