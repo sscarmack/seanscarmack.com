@@ -6,14 +6,16 @@ import {
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
+  CreditCard,
   FileSpreadsheet,
+  Images,
   ReceiptText,
   ShieldCheck,
   Users,
 } from "lucide-react";
 import "./publicLanding.css";
 
-type FeatureKey = "dashboard" | "coverage" | "ledger" | "reports";
+type FeatureKey = "dashboard" | "coverage" | "ledger" | "reports" | "invoices" | "gallery";
 
 const features: Array<{
   key: FeatureKey;
@@ -55,6 +57,22 @@ const features: Array<{
     metric: "$57.5k",
     metricLabel: "expected net for the year",
   },
+  {
+    key: "invoices",
+    title: "Get paid faster",
+    eyebrow: "Invoicing + payments",
+    description: "Build a clear invoice, collect payments, apply discounts, and keep the paid amount and balance due visible in the same job record.",
+    metric: "$2,040",
+    metricLabel: "balance due in view",
+  },
+  {
+    key: "gallery",
+    title: "Deliver the work",
+    eyebrow: "Client galleries",
+    description: "Upload finished work, select the gallery preview, organize sub-galleries, and share a polished client experience without leaving your workspace.",
+    metric: "1 click",
+    metricLabel: "from gallery to shareable site",
+  },
 ];
 
 function ProductPreview({ feature }: { feature: (typeof features)[number] }) {
@@ -85,6 +103,25 @@ function ProductPreview({ feature }: { feature: (typeof features)[number] }) {
     </div>;
   }
 
+  if (feature.key === "invoices") {
+    return <div className="public-preview-window public-invoice-preview">
+      <header><span><ReceiptText size={14} /> Invoice workspace</span><b><i /> Ready to send</b></header>
+      <div className="public-invoice-title"><div><small>Booking #1493</small><strong>Wedding Photo + Video</strong></div><em>Invoice</em></div>
+      <div className="public-invoice-line"><span>Photography</span><small>8 hrs x $300</small><b>$2,400</b></div>
+      <div className="public-invoice-totals"><div><span>Booking total</span><b>$2,400</b></div><div><span>Paid</span><b>$600</b></div><div className="public-invoice-balance"><span>Balance due</span><b>$2,040</b></div></div>
+      <footer><button type="button"><CreditCard size={14} /> Make payment</button><span><CheckCircle2 size={14} /> Invoice ready to email</span></footer>
+    </div>;
+  }
+
+  if (feature.key === "gallery") {
+    return <div className="public-preview-window public-gallery-preview">
+      <header><span><Images size={14} /> Client gallery</span><b><i /> Live</b></header>
+      <div className="public-gallery-title"><div><small>Client delivery</small><strong>Wedding gallery ready</strong></div><em>Preview selected</em></div>
+      <div className="public-gallery-grid"><span /><span /><span /><span /><span /><span /></div>
+      <div className="public-gallery-status"><div><Images size={15} /><span><b>42 photos</b><small>organized and shared</small></span></div><div><CheckCircle2 size={15} /><span><b>Client link active</b><small>ready to view</small></span></div></div>
+    </div>;
+  }
+
   return <div className="public-preview-window public-reports-preview">
     <header><span><FileSpreadsheet size={14} /> Income + Expense</span><b>Year to date</b></header>
     <div className="public-report-title"><div><small>2026 performance</small><strong>Reports that tell the story</strong></div><em>Live</em></div>
@@ -97,6 +134,24 @@ export default function PublicLanding() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const activeFeature = features[activeIndex];
+
+  const featureIcons = {
+    dashboard: BarChart3,
+    coverage: Users,
+    ledger: ReceiptText,
+    reports: FileSpreadsheet,
+    invoices: CreditCard,
+    gallery: Images,
+  };
+
+  const featureSignals: Record<FeatureKey, string> = {
+    dashboard: "3 jobs need attention today",
+    coverage: "All key roles assigned",
+    ledger: "$32,703.25 still open",
+    reports: "Expected net is trending up",
+    invoices: "Invoice ready to send",
+    gallery: "Gallery preview is live",
+  };
 
   const step = (direction: 1 | -1) => setActiveIndex((current) => (current + direction + features.length) % features.length);
 
@@ -120,10 +175,10 @@ export default function PublicLanding() {
       </aside>
 
       <section className="public-feature-stage" aria-labelledby="public-feature-heading">
-        <header><div><small>One operating system. Four momentum makers.</small><h2 id="public-feature-heading">Make every handoff feel automatic.</h2></div><div className="public-carousel-controls"><button type="button" onClick={() => step(-1)} aria-label="Previous product feature"><ChevronLeft size={20} /></button><span>{String(activeIndex + 1).padStart(2, "0")} / 04</span><button type="button" onClick={() => step(1)} aria-label="Next product feature"><ChevronRight size={20} /></button></div></header>
+        <header><div><small>One operating system. Six momentum makers.</small><h2 id="public-feature-heading">Make every handoff feel automatic.</h2></div><div className="public-carousel-controls"><button type="button" onClick={() => step(-1)} aria-label="Previous product feature"><ChevronLeft size={20} /></button><span>{String(activeIndex + 1).padStart(2, "0")} / {String(features.length).padStart(2, "0")}</span><button type="button" onClick={() => step(1)} aria-label="Next product feature"><ChevronRight size={20} /></button></div></header>
         <div className="public-feature-content">
-          <nav aria-label="Product features">{features.map((feature, index) => { const Icon = [BarChart3, Users, ReceiptText, FileSpreadsheet][index]; return <button key={feature.key} type="button" className={index === activeIndex ? "active" : ""} onClick={() => setActiveIndex(index)}><span><Icon size={19} /></span><small>{String(index + 1).padStart(2, "0")}</small><b>{feature.title}</b><ChevronRight size={16} /></button>; })}</nav>
-          <article><div className="public-feature-copy"><p><b>{String(activeIndex + 1).padStart(2, "0")}</b> {activeFeature.eyebrow}</p><h3>{activeFeature.title}</h3><span>{activeFeature.description}</span><em><CheckCircle2 size={16} /> {activeFeature.key === "ledger" ? "$32,703.25 still open" : activeFeature.key === "reports" ? "Expected net is trending up" : activeFeature.key === "coverage" ? "All key roles assigned" : "3 jobs need attention today"}</em><div><strong>{activeFeature.metric}</strong><small>{activeFeature.metricLabel}</small></div></div><ProductPreview feature={activeFeature} /></article>
+          <nav aria-label="Product features">{features.map((feature, index) => { const Icon = featureIcons[feature.key]; return <button key={feature.key} type="button" className={index === activeIndex ? "active" : ""} onClick={() => setActiveIndex(index)}><span><Icon size={19} /></span><small>{String(index + 1).padStart(2, "0")}</small><b>{feature.title}</b><ChevronRight size={16} /></button>; })}</nav>
+          <article><div className="public-feature-copy"><p><b>{String(activeIndex + 1).padStart(2, "0")}</b> {activeFeature.eyebrow}</p><h3>{activeFeature.title}</h3><span>{activeFeature.description}</span><em><CheckCircle2 size={16} /> {featureSignals[activeFeature.key]}</em><div><strong>{activeFeature.metric}</strong><small>{activeFeature.metricLabel}</small></div></div><ProductPreview feature={activeFeature} /></article>
         </div>
       </section>
     </div>
