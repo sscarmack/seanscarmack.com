@@ -7027,23 +7027,25 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
 
   return (
     <main className="auth-shell auth-landing-shell">
-      <section className="welcome-panel">
-        <div className="welcome-kicker">
-          <Camera size={18} />
-          <span>The Vendor Book</span>
-          <small>Built for booked-out service businesses</small>
-        </div>
-        <h1>Every job. Every dollar. Finally in one place.</h1>
-        <p className="welcome-lede">
-          The connected operating system for service businesses that need to book work, cover it well, get paid, and show clients what comes next.
-        </p>
-        <div className="welcome-cta-row">
-          <button type="button" className="welcome-primary-cta" onClick={() => setMode("signup")}>
-            Start your free trial <MoveRight size={18} />
-          </button>
-          <div className="welcome-proof-list" aria-label="Trial details">
-            <span><CheckCircle2 size={15} /> 30 days free</span>
-            <span><CheckCircle2 size={15} /> No card required</span>
+      <section className="landing-main-column">
+        <div className="landing-hero-copy">
+          <div className="welcome-kicker">
+            <Camera size={18} />
+            <span>The Vendor Book</span>
+            <small>Built for booked-out service businesses</small>
+          </div>
+          <h1>Run every job from booked to paid.</h1>
+          <p className="welcome-lede">
+            One connected workspace for bookings, team coverage, invoices, payments, expenses, client galleries, and the website that brings in the next job.
+          </p>
+          <div className="welcome-cta-row">
+            <button type="button" className="welcome-primary-cta" onClick={() => setMode("signup")}>
+              Start your free trial <MoveRight size={18} />
+            </button>
+            <div className="welcome-proof-list" aria-label="Trial details">
+              <span><CheckCircle2 size={15} /> 30 days free</span>
+              <span><CheckCircle2 size={15} /> No card required</span>
+            </div>
           </div>
         </div>
         <section className="landing-workspace-preview" aria-label="The Vendor Book product preview">
@@ -7183,6 +7185,7 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
           </div>
         </section>
       </section>
+      <aside className="landing-access-column">
       <section className="auth-panel">
         <div className="auth-trial-banner"><CheckCircle2 size={16} /> 30-day free trial. No card needed.</div>
         <div className="auth-brand">
@@ -7266,6 +7269,22 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
           </button>
         )}
       </section>
+        <section className="landing-side-snapshot" aria-label="Sample workspace overview">
+          <div className="landing-side-snapshot-head">
+            <div>
+              <span>Inside the workspace</span>
+              <strong>Everything stays visible.</strong>
+            </div>
+            <BarChart3 size={21} />
+          </div>
+          <div className="landing-side-stat-grid">
+            <div><strong>3</strong><span>jobs today</span></div>
+            <div><strong>1</strong><span>contract waiting</span></div>
+            <div><strong>$5.5k</strong><span>open balance</span></div>
+          </div>
+          <div className="landing-side-check"><Users size={17} /><span>Team coverage checked before the job starts.</span><CheckCircle2 size={17} /></div>
+        </section>
+      </aside>
     </main>
   );
 }
