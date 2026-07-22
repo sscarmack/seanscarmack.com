@@ -1531,6 +1531,274 @@ button {
   padding: 17px;
 }
 
+.landing-capability-carousel {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid #c8dad8;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 18px 38px rgba(27, 63, 70, 0.08);
+}
+
+.landing-carousel-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.landing-carousel-head > div:first-child {
+  display: grid;
+  gap: 5px;
+  max-width: 580px;
+}
+
+.landing-carousel-head p,
+.landing-carousel-head h2 {
+  margin: 0;
+}
+
+.landing-carousel-head p {
+  color: #2c7775;
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.landing-carousel-head h2 {
+  color: #173246;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  line-height: 1.2;
+}
+
+.landing-carousel-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #55707a;
+  font-size: 0.75rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.landing-carousel-controls button {
+  width: 34px;
+  height: 34px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid #c7dbd9;
+  border-radius: 7px;
+  color: #1e5961;
+  background: #f5fafa;
+  cursor: pointer;
+}
+
+.landing-carousel-controls button:hover,
+.landing-carousel-controls button:focus-visible {
+  color: #ffffff;
+  border-color: #18384d;
+  background: #18384d;
+}
+
+.landing-carousel-body {
+  display: grid;
+  grid-template-columns: minmax(200px, 0.42fr) minmax(0, 1fr);
+  min-height: 264px;
+  border: 1px solid #d5e3e2;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.landing-carousel-rail {
+  display: grid;
+  align-content: stretch;
+  border-right: 1px solid #d5e3e2;
+  background: #f4f8f7;
+}
+
+.landing-carousel-rail button {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  border: 0;
+  border-bottom: 1px solid #dce8e7;
+  color: #5d737c;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.landing-carousel-rail button:last-child {
+  border-bottom: 0;
+}
+
+.landing-carousel-rail button > span {
+  width: 30px;
+  height: 30px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 6px;
+  color: #2d7775;
+  background: #e2f1ef;
+}
+
+.landing-carousel-rail button strong {
+  overflow: hidden;
+  color: #405a64;
+  font-size: 0.82rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.landing-carousel-rail button small {
+  color: #91a4aa;
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.landing-carousel-rail button.active {
+  color: #ffffff;
+  background: #18384d;
+}
+
+.landing-carousel-rail button.active > span {
+  color: #ffffff;
+  background: #e16a52;
+}
+
+.landing-carousel-rail button.active strong,
+.landing-carousel-rail button.active small {
+  color: #ffffff;
+}
+
+.landing-carousel-slide {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(230px, 0.78fr);
+  gap: 20px;
+  padding: 22px;
+  background: #ffffff;
+}
+
+.landing-carousel-copy {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  gap: 10px;
+}
+
+.landing-carousel-copy > span {
+  color: #2a7777;
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.landing-carousel-copy h3,
+.landing-carousel-copy p {
+  margin: 0;
+}
+
+.landing-carousel-copy h3 {
+  color: #173246;
+  font-size: 1.55rem;
+  line-height: 1.08;
+}
+
+.landing-carousel-copy p {
+  color: #60747d;
+  font-size: 0.87rem;
+  line-height: 1.5;
+}
+
+.landing-carousel-copy > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 4px;
+  color: #2b7251;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.landing-carousel-preview {
+  display: grid;
+  align-content: start;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid #c8dcda;
+  border-radius: 7px;
+  background: #f5faf9;
+}
+
+.landing-carousel-preview-head {
+  min-height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 11px;
+  color: #e8f4f3;
+  background: #1a3e52;
+  font-size: 0.67rem;
+  font-weight: 900;
+}
+
+.landing-carousel-preview-head span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.landing-carousel-preview-head i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #75d99e;
+}
+
+.landing-carousel-preview > strong {
+  padding: 13px 12px 9px;
+  color: #345a66;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.landing-carousel-preview-row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 7px;
+  min-height: 42px;
+  margin: 0 9px;
+  padding: 0 7px;
+  border-top: 1px solid #dbe8e7;
+  color: #40606a;
+}
+
+.landing-carousel-preview-row span {
+  color: #2e7878;
+  font-size: 0.65rem;
+  font-weight: 900;
+}
+
+.landing-carousel-preview-row b {
+  overflow: hidden;
+  font-size: 0.72rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.landing-carousel-preview-row svg {
+  color: #55a96d;
+}
+
 .payment-box {
   display: flex;
   gap: 12px;
@@ -53445,6 +53713,10 @@ select:focus {
     padding-top: 0;
   }
 
+  .landing-carousel-slide {
+    grid-template-columns: minmax(0, 1fr) minmax(230px, 0.72fr);
+  }
+
   .auth-landing-shell .landing-access-column .auth-panel {
     width: 100%;
     max-width: none;
@@ -53537,6 +53809,60 @@ select:focus {
 
   .landing-access-column {
     grid-template-columns: 1fr;
+  }
+
+  .landing-capability-carousel {
+    padding: 16px;
+  }
+
+  .landing-carousel-head {
+    align-items: start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .landing-carousel-body {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-carousel-rail {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-right: 0;
+    border-bottom: 1px solid #d5e3e2;
+  }
+
+  .landing-carousel-rail button {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 4px;
+    min-height: 82px;
+    padding: 9px 5px;
+    border-right: 1px solid #dce8e7;
+    border-bottom: 0;
+    text-align: center;
+  }
+
+  .landing-carousel-rail button:last-child {
+    border-right: 0;
+  }
+
+  .landing-carousel-rail button strong {
+    max-width: 100%;
+    font-size: 0.67rem;
+  }
+
+  .landing-carousel-rail button small {
+    display: none;
+  }
+
+  .landing-carousel-slide {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 18px;
+  }
+
+  .landing-carousel-preview {
+    min-height: 180px;
   }
 
   .landing-side-stat-grid strong {

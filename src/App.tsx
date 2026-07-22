@@ -6925,6 +6925,7 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
   const [expenseCategoriesDraft, setExpenseCategoriesDraft] = useState("");
   const [logoDataUrl, setLogoDataUrl] = useState("");
   const [message, setMessage] = useState("");
+  const [activeCapability, setActiveCapability] = useState(0);
   const selectedPlanAmount = plan === "monthly" ? "$20 monthly" : "$200 yearly";
 
   function splitList(value: string) {
@@ -7006,24 +7007,37 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
     {
       icon: CalendarDays,
       title: "Book the work",
+      eyebrow: "Bookings",
       body: "Turn an inquiry into a scheduled job with services, contracts, client details, and a clean booking flow.",
+      signal: "3 booking steps complete",
+      preview: ["Jordan Miles", "Wedding Photo + Video", "Contract ready"],
     },
     {
       icon: Users,
       title: "Cover the job",
+      eyebrow: "Team coverage",
       body: "Keep team roles, pay, time, location, and missing coverage visible before the work happens.",
+      signal: "All key roles assigned",
+      preview: ["Photo lead", "Video editor", "Time & location confirmed"],
     },
     {
       icon: Wallet,
       title: "Know the money",
+      eyebrow: "Invoice health",
       body: "See invoice health, expenses, taxes, payments, open balances, and profit in the same record.",
+      signal: "$2,040 balance due",
+      preview: ["$2,640 grand total", "$600 collected", "$240 expenses"],
     },
     {
       icon: ImageIcon,
       title: "Show the finished work",
+      eyebrow: "Client delivery",
       body: "Build client galleries and a booking website without sending people to a disconnected system.",
+      signal: "Gallery preview is live",
+      preview: ["Client gallery", "Preview image selected", "Website ready to share"],
     },
   ];
+  const activeBenefit = productBenefits[activeCapability];
 
   return (
     <main className="auth-shell auth-landing-shell">
@@ -7088,20 +7102,60 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
             <span><ImageIcon size={15} /> Gallery preview set</span>
           </div>
         </section>
-        <div className="welcome-feature-grid">
-          {productBenefits.map((benefit) => {
-            const Icon = benefit.icon;
-            return (
-              <article key={benefit.title}>
-                <Icon size={19} />
-                <div>
-                  <h2>{benefit.title}</h2>
-                  <p>{benefit.body}</p>
-                </div>
-              </article>
-            );
-          })}
-        </div>
+        <section className="landing-capability-carousel" aria-label="Explore what The Vendor Book can do">
+          <div className="landing-carousel-head">
+            <div>
+              <p>One system, four moments that matter</p>
+              <h2>Choose the part of the work you want to make easier.</h2>
+            </div>
+            <div className="landing-carousel-controls">
+              <button type="button" aria-label="Show previous capability" onClick={() => setActiveCapability((index) => (index + productBenefits.length - 1) % productBenefits.length)}><ChevronLeft size={18} /></button>
+              <span>{String(activeCapability + 1).padStart(2, "0")} / {String(productBenefits.length).padStart(2, "0")}</span>
+              <button type="button" aria-label="Show next capability" onClick={() => setActiveCapability((index) => (index + 1) % productBenefits.length)}><ChevronRight size={18} /></button>
+            </div>
+          </div>
+          <div className="landing-carousel-body">
+            <div className="landing-carousel-rail" role="tablist" aria-label="Capabilities">
+              {productBenefits.map((benefit, index) => {
+                const Icon = benefit.icon;
+                const isActive = index === activeCapability;
+                return (
+                  <button
+                    key={benefit.title}
+                    aria-selected={isActive}
+                    className={isActive ? "active" : ""}
+                    role="tab"
+                    type="button"
+                    onClick={() => setActiveCapability(index)}
+                  >
+                    <span><Icon size={17} /></span>
+                    <strong>{benefit.title}</strong>
+                    <small>{String(index + 1).padStart(2, "0")}</small>
+                  </button>
+                );
+              })}
+            </div>
+            <article className="landing-carousel-slide" role="tabpanel">
+              <div className="landing-carousel-copy">
+                <span>{activeBenefit.eyebrow}</span>
+                <h3>{activeBenefit.title}</h3>
+                <p>{activeBenefit.body}</p>
+                <div><CheckCircle2 size={16} /> {activeBenefit.signal}</div>
+              </div>
+              <div className="landing-carousel-preview" aria-label={`${activeBenefit.title} preview`}>
+                <div className="landing-carousel-preview-head"><span><Camera size={15} /> The Vendor Book</span><i /></div>
+                <strong>{activeBenefit.eyebrow}</strong>
+                {activeBenefit.preview.map((item, index) => (
+                  <div className="landing-carousel-preview-row" key={item}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <b>{item}</b>
+                    <CheckCircle2 size={15} />
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
+        </section>
         <section className="welcome-difference">
           <p>Why it is different</p>
           <strong>Most tools track money after the fact. This tracks the whole job from inquiry to final balance.</strong>
