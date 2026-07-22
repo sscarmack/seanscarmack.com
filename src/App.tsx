@@ -7004,49 +7004,101 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
   ];
   const productBenefits = [
     {
-      title: "Run income, bookings, and expenses in one place",
-      body: "Track paid work, open balances, sales tax, mileage, contractors, and profit without stitching together spreadsheets.",
+      icon: CalendarDays,
+      title: "Book the work",
+      body: "Turn an inquiry into a scheduled job with services, contracts, client details, and a clean booking flow.",
     },
     {
-      title: "Built for service businesses, not generic bookkeeping",
-      body: "Services, add-ons, quotes, contracts, booking pages, payment methods, and client history all connect to the same job record.",
+      icon: Users,
+      title: "Cover the job",
+      body: "Keep team roles, pay, time, location, and missing coverage visible before the work happens.",
     },
     {
-      title: "Know what is happening today",
-      body: "See what is collected, what is still owed, upcoming work, overdue contracts, missing details, and tax totals from the dashboard.",
+      icon: Wallet,
+      title: "Know the money",
+      body: "See invoice health, expenses, taxes, payments, open balances, and profit in the same record.",
     },
     {
-      title: "Start clean or get guided",
-      body: "Use the setup walkthrough to build your workspace in minutes, or jump straight in and customize everything yourself.",
+      icon: ImageIcon,
+      title: "Show the finished work",
+      body: "Build client galleries and a booking website without sending people to a disconnected system.",
     },
   ];
 
   return (
-    <main className="auth-shell">
+    <main className="auth-shell auth-landing-shell">
       <section className="welcome-panel">
         <div className="welcome-kicker">
           <Camera size={18} />
           <span>The Vendor Book</span>
+          <small>Built for booked-out service businesses</small>
         </div>
-        <h1>The connected book for vendors who book real work.</h1>
+        <h1>Every job. Every dollar. Finally in one place.</h1>
         <p className="welcome-lede">
-          Quotes, bookings, clients, payments, expenses, contractors, taxes, contracts, and your booking website all live together, so you can see the money and the work clearly.
+          The connected operating system for service businesses that need to book work, cover it well, get paid, and show clients what comes next.
         </p>
-        <div className="welcome-actions">
-          <span>30-day free trial</span>
-          <span>No credit card needed</span>
-          <span>$20/mo or $200/yr (save 17%)</span>
+        <div className="welcome-cta-row">
+          <button type="button" className="welcome-primary-cta" onClick={() => setMode("signup")}>
+            Start your free trial <MoveRight size={18} />
+          </button>
+          <div className="welcome-proof-list" aria-label="Trial details">
+            <span><CheckCircle2 size={15} /> 30 days free</span>
+            <span><CheckCircle2 size={15} /> No card required</span>
+          </div>
         </div>
+        <section className="landing-workspace-preview" aria-label="The Vendor Book product preview">
+          <div className="landing-workspace-topbar">
+            <span className="landing-workspace-brand"><Camera size={15} /> The Vendor Book</span>
+            <div><span className="landing-live-dot" /> Live workspace</div>
+          </div>
+          <div className="landing-workspace-heading">
+            <div>
+              <p>Monday, June 23</p>
+              <h2>Your studio, in motion.</h2>
+            </div>
+            <span>Year to date <BarChart3 size={15} /></span>
+          </div>
+          <div className="landing-workspace-grid">
+            <section className="landing-today-card">
+              <div className="landing-card-title"><CalendarDays size={17} /><span>Today&apos;s work</span><b>3 jobs</b></div>
+              {[
+                ["10:00 AM", "Morgan Ellis", "Brand session", "Covered"],
+                ["2:30 PM", "Avery Stone", "Wedding consult", "Contract sent"],
+                ["5:00 PM", "Jordan Miles", "Gallery delivery", "Ready"],
+              ].map(([time, client, work, status]) => (
+                <div className="landing-work-row" key={client}>
+                  <time>{time}</time>
+                  <div><strong>{client}</strong><span>{work}</span></div>
+                  <em>{status}</em>
+                </div>
+              ))}
+            </section>
+            <section className="landing-money-card">
+              <div className="landing-card-title"><Wallet size={17} /><span>Money in view</span><b>June</b></div>
+              <div className="landing-money-value"><span>Collected</span><strong>$12,860</strong><small>of $18,420 booked</small></div>
+              <div className="landing-progress"><i /></div>
+              <div className="landing-money-stats"><span><b>$5,560</b> open</span><span><b>$1,105</b> sales tax</span></div>
+            </section>
+          </div>
+          <div className="landing-workspace-strip">
+            <span><FileText size={15} /> Invoice ready</span>
+            <span><Users size={15} /> Team coverage checked</span>
+            <span><ImageIcon size={15} /> Gallery preview set</span>
+          </div>
+        </section>
         <div className="welcome-feature-grid">
-          {productBenefits.map((benefit) => (
-            <article key={benefit.title}>
-              <CheckCircle2 size={18} />
-              <div>
-                <h2>{benefit.title}</h2>
-                <p>{benefit.body}</p>
-              </div>
-            </article>
-          ))}
+          {productBenefits.map((benefit) => {
+            const Icon = benefit.icon;
+            return (
+              <article key={benefit.title}>
+                <Icon size={19} />
+                <div>
+                  <h2>{benefit.title}</h2>
+                  <p>{benefit.body}</p>
+                </div>
+              </article>
+            );
+          })}
         </div>
         <section className="welcome-difference">
           <p>Why it is different</p>
@@ -7132,6 +7184,7 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
         </section>
       </section>
       <section className="auth-panel">
+        <div className="auth-trial-banner"><CheckCircle2 size={16} /> 30-day free trial. No card needed.</div>
         <div className="auth-brand">
           <span><Camera size={22} /></span>
           <div>
