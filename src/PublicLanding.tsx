@@ -79,7 +79,8 @@ function ProductPreview({ feature }: { feature: (typeof features)[number] }) {
   if (feature.key === "dashboard") {
     return <div className="public-preview-window public-dashboard-preview">
       <header><span><Camera size={14} /> The Vendor Book</span><b><i /> Live workspace</b></header>
-      <div className="public-preview-title"><div><small>Monday, June 23</small><strong>Your studio, in motion.</strong></div><em>Year to date</em></div>
+      <div className="public-dashboard-nav"><b><BarChart3 size={13} /> Dashboard</b><span>Jobs</span><span>Clients</span><span>Reports</span></div>
+      <div className="public-preview-title"><div><small>Monday, June 23</small><strong>Dashboard overview</strong></div><em>Year to date</em></div>
       <div className="public-kpis">{[["Bookings", "$18.4k"], ["Collected", "$12.9k"], ["Open", "$5.6k"], ["Tax", "$1.1k"]].map(([label, value]) => <div key={label}><small>{label}</small><b>{value}</b></div>)}</div>
       <div className="public-dashboard-bottom"><section><div><b>Today&apos;s work</b><span>3 jobs</span></div>{[["10:00 AM", "Planning call", "Ready"], ["2:30 PM", "Client session", "Contract sent"], ["5:00 PM", "Gallery delivery", "Covered"]].map(([time, job, status]) => <p key={time}><small>{time}</small><b>{job}</b><em>{status}</em></p>)}</section><section className="public-money-card"><span>Money in view</span><strong>$12,860</strong><small>of $18,420 booked</small><i /><div><b>$5,560<small> open</small></b><b>$1,105<small> sales tax</small></b></div></section></div>
     </div>;
