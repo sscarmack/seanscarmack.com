@@ -763,17 +763,28 @@ export function buildTaxRows(jobs: Job[], expensesOrSettings: Expense[] | Settin
         : [];
       if (collectedTotal <= 0) return mileageRow;
 
-      const includedSameDayExpenseDates = new Set<string>();
       return [
-        ...payments.map((payment) => {
+        ...payments.map((payment, paymentIndex) => {
           const share = payment.amount / collectedTotal;
           const inAmount = payment.amount;
           const paymentDateKey = `${job.id}|${payment.date}`;
-          const sameDayExpenses = includedSameDayExpenseDates.has(paymentDateKey)
-            ? []
-            : sameDayExpensesByJobDate.get(paymentDateKey) ?? [];
-          includedSameDayExpenseDates.add(paymentDateKey);
-          const sameDayExpenseAmount = sameDayExpenses.reduce((sum, expense) => sum + safeNumber(expense.amount), 0);
+          const sameDayExpenseCandidates = sameDayExpensesByJobDate.get(paymentDateKey) ?? [];
+          const paymentReference = String(job.payments?.find((entry) => entry.id === payment.id)?.reference || "").trim().toLowerCase();
+          const matchesPayment = (expense: Expense) => {
+            const expenseReference = String(expense.reference || "").trim().toLowerCase();
+            return Boolean(paymentReference && expenseReference && expenseReference.includes(paymentReference));
+          };
+          const sameDayExpenses = sameDayExpenseCandidates.filter(matchesPayment);
+          const matchedToAnyPayment = sameDayExpenseCandidates.filter((expense) =>
+            payments.some((candidate) => {
+              const reference = String(job.payments?.find((entry) => entry.id === candidate.id)?.reference || "").trim().toLowerCase();
+              const expenseReference = String(expense.reference || "").trim().toLowerCase();
+              return Boolean(reference && expenseReference && expenseReference.includes(reference));
+            }),
+          );
+          const unmatchedExpenses = sameDayExpenseCandidates.filter((expense) => !matchedToAnyPayment.includes(expense));
+          const assignedExpenses = paymentIndex === 0 ? [...sameDayExpenses, ...unmatchedExpenses] : sameDayExpenses;
+          const sameDayExpenseAmount = assignedExpenses.reduce((sum, expense) => sum + safeNumber(expense.amount), 0);
           const sameDayExpense = sameDayExpenseAmount;
           const rowBaseExpense = baseExpense * share;
           const rowDiscount = discount * share;
@@ -809,7 +820,7 @@ export function buildTaxRows(jobs: Job[], expensesOrSettings: Expense[] | Settin
                 amount: inAmount,
                 detail: payment.method,
               },
-              ...sameDayExpenses.map((expense) => ({
+              ...assignedExpenses.map((expense) => ({
                 id: `expense-${expense.id}`,
                 type: "expense" as const,
                 label: expense.category || "Expense",
