@@ -27,6 +27,7 @@ jobs:
       - run: npm run build
         env:
           VITE_BASE_PATH: /seanscarmack.com/
+          VITE_APP_SURFACE: workspace
           VITE_PUBLIC_LANDING: "false"
           VITE_PLATFORM_ADMIN: "false"
       - uses: actions/configure-pages@v5

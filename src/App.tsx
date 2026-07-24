@@ -6908,7 +6908,7 @@ function App() {
   return <WorkspaceApp key={activeAccount.id} account={activeAccount} onSignOut={signOut} />;
 }
 
-function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSaveAccount: (account: AppAccount) => void }) {
+function VendorBookAuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSaveAccount: (account: AppAccount) => void }) {
   const [mode, setMode] = useState<AuthMode>("signin");
   const [email, setEmail] = useState(adminEmail);
   const [password, setPassword] = useState("");
@@ -7324,6 +7324,78 @@ function AuthScreen({ accounts, onSaveAccount }: { accounts: AppAccount[]; onSav
         )}
       </section>
       </aside>
+    </main>
+  );
+}
+
+function AuthScreen({
+  accounts,
+  onSaveAccount,
+}: {
+  accounts: AppAccount[];
+  onSaveAccount: (account: AppAccount) => void;
+}) {
+  const [email, setEmail] = useState(adminEmail);
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+
+  const signIn = () => {
+    const normalizedEmail = normalizeEmail(email);
+    const account = accounts.find((item) => normalizeEmail(item.email) === normalizedEmail);
+
+    if (!account) {
+      setMessage("No workspace account was found for this email.");
+      return;
+    }
+
+    if (account.password && account.password !== password) {
+      setMessage("Password is incorrect.");
+      return;
+    }
+
+    setMessage("");
+    onSaveAccount(account);
+  };
+
+  return (
+    <main className="workspace-login-shell">
+      <section className="workspace-login-intro">
+        <p className="workspace-login-kicker">SCARMACK PRODUCTIONS</p>
+        <h1 className="workspace-login-title">Income Tracker Workspace</h1>
+        <p className="workspace-login-copy">
+          Private operations for bookings, team assignments, invoices, expenses, and reports.
+        </p>
+        <ul className="workspace-login-list">
+          <li><span>1</span> Keep every booking and payment connected.</li>
+          <li><span>2</span> Assign the right people before work begins.</li>
+          <li><span>3</span> Track invoices, expenses, and reports in one workspace.</li>
+        </ul>
+      </section>
+
+      <section aria-label="Workspace sign in" className="workspace-login-panel">
+        <p className="workspace-login-kicker">PRIVATE ACCESS</p>
+        <h2>Sign in to your workspace</h2>
+        <p>Use your workspace account to continue.</p>
+        <form
+          className="workspace-login-form"
+          onSubmit={(event) => {
+            event.preventDefault();
+            signIn();
+          }}
+        >
+          <label>
+            Email
+            <input autoComplete="email" onChange={(event) => setEmail(event.target.value)} type="email" value={email} />
+          </label>
+          <label>
+            Password
+            <input autoComplete="current-password" onChange={(event) => setPassword(event.target.value)} type="password" value={password} />
+          </label>
+          {message && <p className="workspace-login-message" role="alert">{message}</p>}
+          <button className="workspace-login-submit" type="submit">Open workspace</button>
+        </form>
+        <p className="workspace-login-note">Private access only. Contact the workspace owner for an invitation.</p>
+      </section>
     </main>
   );
 }

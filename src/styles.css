@@ -54825,3 +54825,166 @@ select:focus {
     width: 100%;
   }
 }
+
+/* GitHub Pages opens the private Scarmack Productions workspace, not the parked product landing. */
+.workspace-login-shell {
+  align-items: center;
+  box-sizing: border-box;
+  color: #17263c;
+  display: grid;
+  gap: 56px;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  margin: 0 auto;
+  max-width: 1180px;
+  min-height: 100vh;
+  padding: 48px 28px;
+}
+
+.workspace-login-intro {
+  max-width: 620px;
+}
+
+.workspace-login-kicker {
+  color: #257f80;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  margin: 0 0 14px;
+}
+
+.workspace-login-title {
+  font-size: clamp(2.5rem, 5vw, 4.75rem);
+  line-height: 1;
+  margin: 0;
+}
+
+.workspace-login-copy {
+  color: #63778a;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 20px 0 0;
+  max-width: 560px;
+}
+
+.workspace-login-list {
+  border-top: 1px solid #d9e5e9;
+  color: #24465b;
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 22px 0 0;
+}
+
+.workspace-login-list li {
+  align-items: center;
+  display: flex;
+  font-weight: 700;
+  gap: 10px;
+}
+
+.workspace-login-list span {
+  background: #e1f3ef;
+  border-radius: 50%;
+  color: #257f80;
+  display: grid;
+  height: 22px;
+  place-items: center;
+  width: 22px;
+}
+
+.workspace-login-panel {
+  background: #fff;
+  border: 1px solid #d7e3e8;
+  border-radius: 8px;
+  box-shadow: 0 18px 40px rgba(17, 54, 73, 0.12);
+  padding: 28px;
+}
+
+.workspace-login-panel h2 {
+  font-size: 1.75rem;
+  margin: 4px 0 6px;
+}
+
+.workspace-login-panel > p:not(.workspace-login-kicker):not(.workspace-login-note) {
+  color: #667c8d;
+  line-height: 1.5;
+  margin: 0 0 24px;
+}
+
+.workspace-login-form {
+  display: grid;
+  gap: 16px;
+}
+
+.workspace-login-form label {
+  color: #365267;
+  display: grid;
+  font-size: 0.82rem;
+  font-weight: 800;
+  gap: 7px;
+}
+
+.workspace-login-form input {
+  border: 1px solid #ccdbe3;
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #17263c;
+  font: inherit;
+  min-height: 48px;
+  padding: 0 14px;
+  width: 100%;
+}
+
+.workspace-login-form input:focus {
+  border-color: #257f80;
+  outline: 2px solid rgba(37, 127, 128, 0.18);
+}
+
+.workspace-login-submit {
+  background: #173f58;
+  border: 0;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  min-height: 50px;
+}
+
+.workspace-login-submit:hover {
+  background: #0e3047;
+}
+
+.workspace-login-message {
+  color: #b53b32 !important;
+  font-size: 0.9rem;
+  margin: 0 !important;
+}
+
+.workspace-login-note {
+  border-top: 1px solid #e4ecef;
+  color: #788b98 !important;
+  font-size: 0.82rem;
+  margin: 22px 0 0 !important;
+  padding-top: 16px;
+}
+
+@media (max-width: 840px) {
+  .workspace-login-shell {
+    align-items: start;
+    gap: 32px;
+    grid-template-columns: 1fr;
+    min-height: 100svh;
+    padding: 32px 20px;
+  }
+
+  .workspace-login-panel {
+    max-width: 520px;
+    width: 100%;
+  }
+
+  .workspace-login-title {
+    font-size: clamp(2.6rem, 13vw, 4.4rem);
+  }
+}
