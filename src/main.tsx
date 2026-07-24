@@ -17,19 +17,11 @@ import "@fontsource/oswald/latin-400.css";
 import "@fontsource/oswald/latin-500.css";
 import "@fontsource/oswald/latin-600.css";
 import "@fontsource/oswald/latin-700.css";
-const appSurface = import.meta.env.VITE_APP_SURFACE;
-const publicLandingBuild =
-  appSurface === "vendor-book" ||
-  (!appSurface && import.meta.env.VITE_PUBLIC_LANDING === "true");
-const platformAdminBuild =
-  appSurface === "platform-admin" ||
-  (!appSurface && import.meta.env.VITE_PLATFORM_ADMIN === "true");
-
-const appModule = publicLandingBuild
-  ? import("./PublicLanding")
-  : platformAdminBuild
-    ? import("./PlatformAdmin")
-    : Promise.all([import("./App"), import("./styles.css")]).then(([module]) => module);
+// GitHub Pages serves only the Scarmack Productions workspace. The separate
+// Vendor Book product is intentionally paused and no longer participates here.
+const appModule = Promise.all([import("./App"), import("./styles.css")]).then(
+  ([module]) => module,
+);
 
 function StartupFailure({ message }: { message: string }) {
   return (
