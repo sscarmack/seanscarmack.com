@@ -24,9 +24,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build:workspace
+      - run: npm run build
         env:
           VITE_BASE_PATH: /seanscarmack.com/
+          VITE_PUBLIC_LANDING: "false"
+          VITE_PLATFORM_ADMIN: "false"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
