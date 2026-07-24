@@ -1,4 +1,4 @@
-name: Deploy staging site
+name: Deploy Income Tracker Workspace
 
 on:
   push:
@@ -24,10 +24,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build
+      - run: npm run build:workspace
         env:
           VITE_BASE_PATH: /seanscarmack.com/
-          VITE_PUBLIC_LANDING: "true"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
