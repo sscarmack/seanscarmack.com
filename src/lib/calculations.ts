@@ -763,11 +763,16 @@ export function buildTaxRows(jobs: Job[], expensesOrSettings: Expense[] | Settin
         : [];
       if (collectedTotal <= 0) return mileageRow;
 
+      const includedSameDayExpenseDates = new Set<string>();
       return [
         ...payments.map((payment) => {
           const share = payment.amount / collectedTotal;
           const inAmount = payment.amount;
-          const sameDayExpenses = sameDayExpensesByJobDate.get(`${job.id}|${payment.date}`) ?? [];
+          const paymentDateKey = `${job.id}|${payment.date}`;
+          const sameDayExpenses = includedSameDayExpenseDates.has(paymentDateKey)
+            ? []
+            : sameDayExpensesByJobDate.get(paymentDateKey) ?? [];
+          includedSameDayExpenseDates.add(paymentDateKey);
           const sameDayExpenseAmount = sameDayExpenses.reduce((sum, expense) => sum + safeNumber(expense.amount), 0);
           const sameDayExpense = sameDayExpenseAmount;
           const rowBaseExpense = baseExpense * share;
