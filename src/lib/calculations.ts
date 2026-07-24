@@ -783,7 +783,9 @@ export function buildTaxRows(jobs: Job[], expensesOrSettings: Expense[] | Settin
             }),
           );
           const unmatchedExpenses = sameDayExpenseCandidates.filter((expense) => !matchedToAnyPayment.includes(expense));
-          const assignedExpenses = paymentIndex === 0 ? [...sameDayExpenses, ...unmatchedExpenses] : sameDayExpenses;
+          const assignedExpenses = matchedToAnyPayment.length === 0 && sameDayExpenseCandidates.length <= payments.length
+            ? sameDayExpenseCandidates.filter((_, expenseIndex) => expenseIndex === paymentIndex)
+            : paymentIndex === 0 ? [...sameDayExpenses, ...unmatchedExpenses] : sameDayExpenses;
           const sameDayExpenseAmount = assignedExpenses.reduce((sum, expense) => sum + safeNumber(expense.amount), 0);
           const sameDayExpense = sameDayExpenseAmount;
           const rowBaseExpense = baseExpense * share;
